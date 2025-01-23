@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build": "npx electron-packager . ForumApp --platform=win32 --arch=x64 --out=dist --overwrite && npx electron-builder --win"
+    "build": "npx electron-packager . ForumApp --platform=win32 --arch=x64 --out=dist --overwrite && npx electron-builder --win && npx electron-packager . ForumApp --platform=darwin --arch=x64 --out=dist --overwrite && npx electron-builder --mac && npx electron-packager . ForumApp --platform=linux --arch=x64 --out=dist --overwrite && npx electron-builder --linux"
   },  
   "author": "",
   "license": "ISC",
