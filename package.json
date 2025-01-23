@@ -1,0 +1,16 @@
+{
+  "name": "pdaforum",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx electron-packager . ForumApp --platform=win32 --arch=x64 --out=dist --overwrite && npx electron-builder --win"
+  },  
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "electron": "^34.0.1",
+    "electron-packager": "^17.1.2"
+  }
+}
+
