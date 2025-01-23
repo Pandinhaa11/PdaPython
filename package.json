@@ -4,13 +4,15 @@
   "main": "index.js",
   "scripts": {
     "build": "npx electron-packager . ForumApp --platform=win32 --arch=x64 --out=dist --overwrite && npx electron-builder --win && npx electron-packager . ForumApp --platform=darwin --arch=x64 --out=dist --overwrite && npx electron-builder --mac && npx electron-packager . ForumApp --platform=linux --arch=x64 --out=dist --overwrite && npx electron-builder --linux"
-  },  
+  },
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
     "electron": "^34.0.1",
     "electron-packager": "^17.1.2"
+  },
+  "dependencies": {
+    "mysql2": "^3.12.0"
   }
 }
-
