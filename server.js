@@ -26,6 +26,17 @@ app.get('/posts', (req, res) => {
   });
 });
 
+app.get('/posts', async (req, res) => {
+    try {
+      const [rows] = await db.execute('SELECT * FROM posts');
+      res.json(rows);
+    } catch (error) {
+      console.error('Erro ao buscar posts:', error.message);
+      res.status(500).send('Erro ao buscar posts.');
+    }
+  });
+  
+
 // Rota para adicionar um novo post
 app.post('/add-post', async (req, res) => {
   const { title, content } = req.body;

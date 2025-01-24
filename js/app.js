@@ -28,6 +28,24 @@ document.addEventListener('DOMContentLoaded', () => {
         postsContainer.appendChild(postElement);
     });
 
+    fetch('http://localhost:3000/posts')
+    .then(response => response.json())
+    .then(posts => {
+      const postsContainer = document.getElementById('posts-container');
+      postsContainer.innerHTML = ''; // Limpa posts antigos
+      posts.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.className = 'post';
+        postElement.innerHTML = `
+          <h3>${post.title}</h3>
+          <p>${post.content}</p>
+        `;
+        postsContainer.appendChild(postElement);
+      });
+    })
+    .catch(error => console.error('Erro ao carregar posts:', error));
+  
+
     // Impedir que o clique no botão "Leia Mais" cause problemas (opcional)
     document.querySelectorAll('.view-post').forEach(button => {
         button.addEventListener('click', (e) => {
