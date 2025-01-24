@@ -1,4 +1,5 @@
 const { app, BrowserWindow } = require('electron');
+const path = require('path');
 
 let mainWindow;
 
@@ -12,20 +13,33 @@ app.on('ready', () => {
     },
   });
 
-  mainWindow.loadURL('http://localhost:3000'); // Certifique-se de que o backend está rodando
+  // Carrega o endereço do servidor
+  mainWindow.loadURL('http://localhost:3000');
+
   mainWindow.on('closed', () => {
     mainWindow = null;
   });
 });
 
+// Modifique a verificação do sistema operacional
 app.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
+  // Fecha o aplicativo no Windows quando todas as janelas estão fechadas
+  if (process.platform === 'win32') {
     app.quit();
   }
 });
 
 app.on('activate', () => {
   if (BrowserWindow.getAllWindows().length === 0) {
-    createMainWindow();
+    mainWindow = new BrowserWindow({
+      width: 800,
+      height: 600,
+      webPreferences: {
+        nodeIntegration: true,
+        contextIsolation: false,
+      },
+    });
+
+    mainWindow.loadURL('http://localhost:3000');
   }
 });
